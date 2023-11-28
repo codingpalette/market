@@ -41,7 +41,7 @@ const sizeClasses = {
  * @param {boolean} isLoading - 로딩 상태
  * @param {boolean} isIconOnly - 아이콘만 표시
  * */
-export default function Button({children, onClick, color = 'default', size = 'medium', className, disabled, isLoading, isIconOnly}: ButtonProps) {
+export default function Button({children, onClick, color = 'default', size = 'medium', className = '', disabled, isLoading, isIconOnly}: ButtonProps) {
 
   const buttonClasses = `
     rounded-md transition-background-color duration-200  
