@@ -49,7 +49,7 @@ export default function Button({children, onClick, color = 'default', size = 'me
     ${sizeClasses[size]}
     ${className}
     ${disabled || isLoading ? 'opacity-50 cursor-not-allowed' : ''}
-    ${isIconOnly ? 'rounded-full px-0 py-0 w-[40px] h-[40px] flex items-center justify-center' : ''}
+    ${isIconOnly ? 'rounded-full px-0 py-0 flex items-center justify-center' : ''}
   `;
 
   return (
