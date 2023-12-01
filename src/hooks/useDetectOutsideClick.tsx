@@ -7,7 +7,7 @@ interface useDetectOutsideClickProps {
 
 
 export const useDetectOutsideClick = ({el, initialState}: useDetectOutsideClickProps) => {
-  const [isActive, setIsActive] = useState(initialState);
+  const [isActive, setIsActive] = useState<boolean>(initialState);
 
   useEffect(() => {
     const onClick = (e: any) => {
