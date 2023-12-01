@@ -1,5 +1,5 @@
-import HeaderTop from "@/components/molecules/HeaderTop";
-import HeaderBottom from "@/components/molecules/HeaderBottom";
+import HeaderTop from "@/app/_components/molecules/HeaderTop";
+import HeaderBottom from "@/app/_components/molecules/HeaderBottom";
 
 
 export default function Header () {
@@ -7,7 +7,7 @@ export default function Header () {
     <>
       <header className="">
         <HeaderTop />
-        <HeaderBottom />
+        {/*<HeaderBottom />*/}
         <div className="h-[1px] bg-neutral-500"></div>
       </header>
     </>

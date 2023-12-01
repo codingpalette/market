@@ -1,4 +1,4 @@
-import HeaderNavLink from "@/components/atoms/HeaderNavLink";
+import HeaderNavLink from "@/app/_components/atoms/HeaderNavLink";
 
 
 export default function HeaderBottom() {
