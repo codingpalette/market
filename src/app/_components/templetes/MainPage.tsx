@@ -6,10 +6,19 @@ import ItemCard from "@/app/_components/molecules/ItemCard";
 import MenuList from "@/app/_components/atoms/MenuList";
 import Modal from "@/app/_components/molecules/Modal";
 import Button from "@/app/_components/atoms/Button";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import Link from "next/link";
 
 
-export default function MainPage() {
+interface MainPageProps {
+  aa?: any
+}
+
+export default function MainPage({aa}: MainPageProps) {
+
+  useEffect(() => {
+    console.log('aa', aa)
+  }, [aa])
 
   const testClick = () => {
     console.log('test')
@@ -65,9 +74,21 @@ export default function MainPage() {
       {/*  <MenuList items={items} />*/}
       {/*</div>*/}
       {/*<Card />*/}
+      <div>
+        <Link href='/'>Home</Link>
+      </div>
+      <div>
+        <Link href='/about'>about</Link>
+      </div>
 
       <Button onClick={modalOpen}>오픈</Button>
-
+      {aa.map((v: any) => {
+        return (
+          <div key={v.user_id}>
+            {v.user_nickname}
+          </div>
+        )
+      })}
       <Modal title="모달 타이틀" open={active} onClose={modalClose}>
       </Modal>
     </>

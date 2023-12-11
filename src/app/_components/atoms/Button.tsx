@@ -15,6 +15,7 @@ interface ButtonProps {
   disabled?: boolean; // 버튼 비활성화 상태
   isLoading?: boolean; // 로딩 상태
   isIconOnly?: boolean; // 아이콘만 표시
+  type?: 'button' | 'submit' | 'reset'; // 버튼 타입
 }
 
 const colorClasses = {
@@ -40,8 +41,9 @@ const sizeClasses = {
  * @param {boolean} disabled - 버튼 비활성화 상태
  * @param {boolean} isLoading - 로딩 상태
  * @param {boolean} isIconOnly - 아이콘만 표시
+ * @param {'button' | 'submit' | 'reset'} type - 버튼 타입
  * */
-export default function Button({children, onClick, color = 'default', size = 'medium', className = '', disabled, isLoading, isIconOnly}: ButtonProps) {
+export default function Button({children, onClick, color = 'default', size = 'medium', className = '', disabled, isLoading, isIconOnly, type = 'button'}: ButtonProps) {
 
   const buttonClasses = `
     rounded-md transition-background-color duration-200  
@@ -54,7 +56,7 @@ export default function Button({children, onClick, color = 'default', size = 'me
 
   return (
     <>
-      <button className={buttonClasses} onClick={onClick} disabled={disabled}>
+      <button className={buttonClasses} onClick={onClick} disabled={disabled} type={type}>
         {isLoading && <FontAwesomeIcon icon={faSpinner} className="w-4 h-4 inline-block mr-2 animate-spin" />}
         {children}
       </button>
