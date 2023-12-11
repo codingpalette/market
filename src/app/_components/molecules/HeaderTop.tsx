@@ -1,3 +1,5 @@
+'use client'
+
 import Button from "@/app/_components/atoms/Button";
 import Link from 'next/link';
 import Image from 'next/image';
@@ -8,7 +10,7 @@ import { useTransition } from 'react';
 
 
 
-export default async function HeaderTop() {
+export default function HeaderTop() {
   let [isPending, startTransition] = useTransition();
 
 
@@ -33,6 +35,7 @@ export default async function HeaderTop() {
             <FontAwesomeIcon icon={faBell} />
           </Button>
           <Button onClick={() => startTransition(() => loginAction())}>로그인</Button>
+          {/*<Button>로그인</Button>*/}
           <Button color="primary">회원가입</Button>
         </div>
       </div>
