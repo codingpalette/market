@@ -4,6 +4,7 @@ import useKeyEscClose from "@/hooks/useKeyEscClose";
 import Button from "@/app/_components/atoms/Button";
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import ModalRenderHeader from "@/app/_components/atoms/ModalRenderHeader";
 
 interface ModalProps {
   open?: boolean;
@@ -37,7 +38,7 @@ const sizeClasses = {
  * @param {boolean} headerRender - 헤더 렌더링 여부
  * @param {React.ReactNode} header - 헤더 커스텀 렌더링
  * */
-export default function Modal({open, onClose, size = 'md', children, title, maskClose = true, keyboardClose = true }: ModalProps) {
+export default function Modal({open, onClose, size = 'md', children, title, maskClose = true, keyboardClose = true, headerRender = true, header }: ModalProps) {
 
 
   const modalContentClasses = `
@@ -72,15 +73,11 @@ export default function Modal({open, onClose, size = 'md', children, title, mask
       <div className="fixed left-0 top-0 right-0 bottom-0 flex items-center justify-center">
         <div className={modalContentClasses}>
           <section className="border border-neutral-800 rounded-md bg-neutral-950">
-            <header className="flex justify-between items-start gap-2 p-3">
-              <h3 className="font-bold break-words w-full max-w-[80%]">{title}</h3>
-              <div className="">
-                <Button onClick={modalClose}>
-                  <FontAwesomeIcon icon={faXmark} />
-                </Button>
-              </div>
-            </header>
-            <div className="h-px w-full bg-neutral-800"></div>
+            {headerRender && (
+              <>
+                <ModalRenderHeader modalClose={modalClose} title={title} header={header} />
+              </>
+            )}
             <div className=" max-h-[80vh] overflow-y-auto">
               modal content
             </div>

@@ -89,7 +89,11 @@ export default function MainPage({aa}: MainPageProps) {
           </div>
         )
       })}
-      <Modal title="모달 타이틀" open={active} onClose={modalClose}>
+      <Modal
+        title="모달 타이틀"
+        open={active}
+        onClose={modalClose}
+      >
       </Modal>
     </>
   )
