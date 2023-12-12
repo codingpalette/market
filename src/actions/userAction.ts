@@ -42,7 +42,7 @@ export async function userCreate(formData: any) {
   try {
     // 유저 생성
     const result = await sql`INSERT INTO users (user_nickname) VALUES (${formData.get('user_nickname')}) `;
-    // revalidatePath('/')
+    revalidatePath('/')
     return NextResponse.json({result}, {status: 200}).json()
 
   } catch (e: any) {
