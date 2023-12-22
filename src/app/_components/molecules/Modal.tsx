@@ -79,8 +79,8 @@ export default function Modal({open, onClose, size = 'md', children, title, mask
                 <ModalRenderHeader modalClose={modalClose} title={title} header={header} />
               </>
             )}
-            <div className=" max-h-[80vh] overflow-y-auto">
-              modal content
+            <div className=" max-h-[80vh] overflow-y-auto p-4">
+              {children}
             </div>
             <ModalRenderFooter modalClose={modalClose} />
 

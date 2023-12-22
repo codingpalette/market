@@ -23,7 +23,7 @@ export default function ModalRenderHeader({modalClose, title, header}: ModalRend
         <header className="flex justify-between items-start gap-2 p-3">
           <h3 className="font-bold break-words w-full max-w-[80%]">{title}</h3>
           <div className="">
-            <Button onClick={modalClose}>
+            <Button onClick={modalClose} size="small">
               <FontAwesomeIcon icon={faXmark} />
             </Button>
           </div>
