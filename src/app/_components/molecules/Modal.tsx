@@ -5,6 +5,7 @@ import Button from "@/app/_components/atoms/Button";
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import ModalRenderHeader from "@/app/_components/atoms/ModalRenderHeader";
+import ModalRenderFooter from "@/app/_components/atoms/ModalRenderFooter";
 
 interface ModalProps {
   open?: boolean;
@@ -81,9 +82,8 @@ export default function Modal({open, onClose, size = 'md', children, title, mask
             <div className=" max-h-[80vh] overflow-y-auto">
               modal content
             </div>
-            <footer>
-              footer
-            </footer>
+            <ModalRenderFooter modalClose={modalClose} />
+
           </section>
         </div>
         <div className="absolute left-0 top-0 z-10 w-full h-full bg-black opacity-60" onClick={maskClose ? modalClose : undefined}></div>
