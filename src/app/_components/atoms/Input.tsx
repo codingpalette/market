@@ -3,7 +3,7 @@
 import {useState} from "react";
 
 
-interface InputProps {
+export interface InputProps {
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   size?: 'sm' | 'md' | 'lg';
@@ -15,6 +15,8 @@ interface InputProps {
   type?: 'text' | 'password' | 'number';
   style?: React.CSSProperties;
   className?: string;
+  maxLength?: number;
+  id?: string;
 }
 
 const sizeClasses = {
@@ -24,12 +26,28 @@ const sizeClasses = {
 };
 
 const colorClasses = {
-  default: 'border-neutral-700 focus:border-neutral-500',
+  default: 'border-neutral-600 focus:border-neutral-500',
   primary: 'bg-white text-black hover:bg-neutral-300',
   success: 'border-green-700 focus:border-green-500',
   warning: 'border-yellow-700 focus:border-yellow-500',
   danger: 'border-red-700 focus:border-red-500'
 };
+
+/**
+ * @param {string} value - 인풋 값
+ * @param {(e: React.ChangeEvent<HTMLInputElement>) => void} onChange - 인풋 값 변경 이벤트 핸들러
+ * @param {'sm' | 'md' | 'lg'} size - 인풋 크기
+ * @param {string} placeholder - 인풋 placeholder
+ * @param {boolean} disabled - 인풋 disabled
+ * @param {boolean} isReadOnly - 인풋 readOnly
+ * @param {'default' | 'primary' | 'success' | 'warning' | 'danger'} color - 인풋 색상
+ * @param {boolean} fullWidth - 인풋 width 100%
+ * @param {'text' | 'password' | 'number'} type - 인풋 타입
+ * @param {React.CSSProperties} style - 인풋 인라인 스타일
+ * @param {string} className - 인풋 클래스 이름
+ * @param {number} maxLength - 인풋 최대 길이
+ * @param {string} id - 인풋 id
+ * */
 
 export default function Input({
   value,
@@ -41,7 +59,9 @@ export default function Input({
   type = 'text',
   style,
   className,
-  disabled
+  disabled,
+  maxLength,
+  id,
 }: InputProps) {
   const [internalValue, setInternalValue] = useState("");
 
@@ -51,7 +71,7 @@ export default function Input({
     ${sizeClasses[size]}
     ${fullWidth ? 'w-full' : ''}
     ${className}
-    ${disabled ? 'opacity-50 cursor-not-allowed' : ''}
+    ${disabled ? 'cursor-not-allowed' : ''}
   `;
 
 
@@ -79,6 +99,8 @@ export default function Input({
         readOnly={isReadOnly}
         disabled={disabled}
         style={style}
+        maxLength={maxLength}
+        id={id}
       />
     </>
   )

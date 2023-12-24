@@ -9,6 +9,7 @@ import Button from "@/app/_components/atoms/Button";
 import {useEffect, useState} from "react";
 import Link from "next/link";
 import Input from "@/app/_components/atoms/Input";
+import FromInput from "@/app/_components/molecules/FormInput";
 
 
 interface MainPageProps {
@@ -75,6 +76,16 @@ export default function MainPage({aa}: MainPageProps) {
       {/*  <MenuList items={items} />*/}
       {/*</div>*/}
       {/*<Card />*/}
+
+      <div className="m-4" style={{maxWidth: '400px'}}>
+        <FromInput
+          label="테스트"
+          id="test"
+          isRequired={true}
+          isError={true}
+          errorMessage="에러메세지"
+        />
+      </div>
 
       <div className="m-4">
         <Input />
