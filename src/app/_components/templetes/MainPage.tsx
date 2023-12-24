@@ -8,6 +8,7 @@ import Modal from "@/app/_components/molecules/Modal";
 import Button from "@/app/_components/atoms/Button";
 import {useEffect, useState} from "react";
 import Link from "next/link";
+import Input from "@/app/_components/atoms/Input";
 
 
 interface MainPageProps {
@@ -66,7 +67,7 @@ export default function MainPage({aa}: MainPageProps) {
 
   return (
     <>
-      <Header />
+      <Header/>
       {/*<div style={{width: '400px'}}>*/}
       {/*  <ItemCard />*/}
       {/*</div>*/}
@@ -74,6 +75,23 @@ export default function MainPage({aa}: MainPageProps) {
       {/*  <MenuList items={items} />*/}
       {/*</div>*/}
       {/*<Card />*/}
+
+      <div className="m-4">
+        <Input />
+      </div>
+      <div className="m-4">
+        <Input color="primary"/>
+      </div>
+      <div className="m-4">
+        <Input color="danger"/>
+      </div>
+      <div className="m-4">
+        <Input color="success"/>
+      </div>
+      <div className="m-4">
+        <Input color="warning"/>
+      </div>
+
       <div>
         <Link href='/'>Home</Link>
       </div>
