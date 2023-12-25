@@ -20,13 +20,13 @@ export default function RootLayout({
   return (
     <html lang="ko" className={GeistSans.className}>
       <body>
-        {/*<AuthSession>*/}
+        <AuthSession>
           <div>
             <MainLayout>
               {children}
             </MainLayout>
           </div>
-        {/*</AuthSession>*/}
+        </AuthSession>
       </body>
     </html>
   )

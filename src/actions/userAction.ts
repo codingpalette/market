@@ -41,7 +41,9 @@ export async function userCreate(formData: any) {
   console.log('formData', formData)
   try {
     // 유저 생성
-    const result = await sql`INSERT INTO users (user_nickname) VALUES (${formData.get('user_nickname')}) `;
+    const result = await sql`
+      INSERT INTO users (login_id, password) VALUES (${formData.get('user_nickname')}, '1234') 
+    `;
     revalidatePath('/')
     return NextResponse.json({result}, {status: 200}).json()
 
