@@ -8,6 +8,8 @@ import { faBell} from '@fortawesome/free-regular-svg-icons'
 import {loginAction} from "@/actions/userAction";
 import {useState, useTransition} from 'react';
 import Modal from "@/app/_components/molecules/Modal";
+import FromInput from "@/app/_components/molecules/FormInput";
+import Input from "@/app/_components/atoms/Input";
 
 
 
@@ -57,8 +59,13 @@ export default function HeaderTop() {
         open={loginModalActive}
         onClose={closeLoginModal}
         title="로그인"
+        okRender={false}
       >
-        sdfdsf
+        <div className="flex flex-col gap-4">
+          <Input name="email" fullWidth={true} placeholder="이메일을 입력해 주세요." maxLength={50} />
+          <Button fullWidth={true}>이메일로 로그인</Button>
+        </div>
+
       </Modal>
     </>
   )

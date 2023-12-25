@@ -17,6 +17,7 @@ export interface InputProps {
   className?: string;
   maxLength?: number;
   id?: string;
+  name?: string;
 }
 
 const sizeClasses = {
@@ -47,6 +48,7 @@ const colorClasses = {
  * @param {string} className - 인풋 클래스 이름
  * @param {number} maxLength - 인풋 최대 길이
  * @param {string} id - 인풋 id
+ * @param {string} name - 인풋 name
  * */
 
 export default function Input({
@@ -62,6 +64,7 @@ export default function Input({
   disabled,
   maxLength,
   id,
+  name,
 }: InputProps) {
   const [internalValue, setInternalValue] = useState("");
 
@@ -101,6 +104,7 @@ export default function Input({
         style={style}
         maxLength={maxLength}
         id={id}
+        name={name}
       />
     </>
   )

@@ -17,6 +17,7 @@ interface ButtonProps {
   isIconOnly?: boolean; // 아이콘만 표시
   type?: 'button' | 'submit' | 'reset'; // 버튼 타입
   style?: React.CSSProperties;
+  fullWidth?: boolean;
 }
 
 const colorClasses = {
@@ -44,8 +45,9 @@ const sizeClasses = {
  * @param {boolean} isIconOnly - 아이콘만 표시
  * @param {'button' | 'submit' | 'reset'} type - 버튼 타입
  * @param {React.CSSProperties} style - 선택적 CSS 인라인 스타일
+ * @param {boolean} fullWidth - 버튼 width 100%
  * */
-export default function Button({children, onClick, color = 'default', size = 'medium', className = '', disabled, isLoading, isIconOnly, type = 'button', style}: ButtonProps) {
+export default function Button({children, onClick, color = 'default', size = 'medium', className = '', disabled, isLoading, isIconOnly, type = 'button', style, fullWidth}: ButtonProps) {
 
   const buttonClasses = `
     rounded-md transition-background-color duration-200  
@@ -54,6 +56,7 @@ export default function Button({children, onClick, color = 'default', size = 'me
     ${className}
     ${disabled || isLoading ? 'opacity-50 cursor-not-allowed' : ''}
     ${isIconOnly ? 'rounded-full px-0 py-0 flex items-center justify-center' : ''}
+    ${fullWidth ? 'w-full' : ''}
   `;
 
   return (
