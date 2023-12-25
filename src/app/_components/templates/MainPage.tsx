@@ -68,7 +68,6 @@ export default function MainPage({aa}: MainPageProps) {
 
   return (
     <>
-      <Header/>
       {/*<div style={{width: '400px'}}>*/}
       {/*  <ItemCard />*/}
       {/*</div>*/}

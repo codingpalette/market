@@ -2,7 +2,8 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { GeistSans } from 'geist/font';
 import './globals.css'
-import MainLayout from "@/components/layouts/MainLayout";
+import MainLayout from "@/app/_components/templates/MainLayout";
+import AuthSession from "@/app/_components/wrapper/AuthSession";
 
 // const inter = Inter({ subsets: ['latin'] })
 
@@ -19,11 +20,13 @@ export default function RootLayout({
   return (
     <html lang="ko" className={GeistSans.className}>
       <body>
-        <div>
-          <MainLayout>
-            {children}
-          </MainLayout>
-        </div>
+        {/*<AuthSession>*/}
+          <div>
+            <MainLayout>
+              {children}
+            </MainLayout>
+          </div>
+        {/*</AuthSession>*/}
       </body>
     </html>
   )

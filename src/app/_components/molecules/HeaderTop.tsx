@@ -49,9 +49,19 @@ export default function HeaderTop() {
             <FontAwesomeIcon icon={faBell} />
           </Button>
           {/*<Button onClick={() => startTransition(() => loginAction())}>로그인</Button>*/}
-          <Button onClick={openLoginModal}>로그인</Button>
+          {/*<Button onClick={openLoginModal}>로그인</Button>*/}
+          <Button>
+            <Link href="/login">
+              로그인
+            </Link>
+          </Button>
+          <Button>
+            <Link href="/join">
+              회원가입
+            </Link>
+          </Button>
           {/*<Button>로그인</Button>*/}
-          <Button color="primary">회원가입</Button>
+          {/*<Button color="primary">회원가입</Button>*/}
         </div>
       </div>
 
