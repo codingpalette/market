@@ -39,6 +39,7 @@ export async function gerUsers() {
 
 export async function userCreate(formData: any) {
   console.log('formData', formData)
+  return NextResponse.json({formData}, {status: 200}).json()
   try {
     // 유저 생성
     const result = await sql`

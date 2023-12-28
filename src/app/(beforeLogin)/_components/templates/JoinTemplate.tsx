@@ -1,14 +1,20 @@
+'use client';
+
 import FromInput from "@/app/_components/molecules/FormInput";
 import Button from "@/app/_components/atoms/Button";
 import LoginJoinBox from "@/app/(beforeLogin)/_components/organisms/LoginJoinBox";
 import {userCreate} from "@/actions/userAction";
 
 
-export default function JoinTemplate() {
+interface JoinTemplateProps {
+  action: string | ((formData: FormData) => void) | undefined
+}
+
+export default function JoinTemplate({action}: JoinTemplateProps) {
   return (
     <>
       <LoginJoinBox title="회원가입">
-        <form action={userCreate}>
+        <form action={action}>
           <div className="mt-4">
             <FromInput
               placeholder="아이디를 입력해 주세요."
