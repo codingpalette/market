@@ -6,11 +6,19 @@ import LoginJoinBox from "@/app/(beforeLogin)/_components/organisms/LoginJoinBox
 import {userCreate} from "@/actions/userAction";
 
 
-interface JoinTemplateProps {
+export interface JoinTemplateProps {
   action: string | ((formData: FormData) => void) | undefined
+  errorMessage?: string
+  errorType?: 'user_nickname' | 'password' | 'password_confirm' | null
 }
 
-export default function JoinTemplate({action}: JoinTemplateProps) {
+/**
+ * @param action - form 이벤트
+ * @param errorMessage - 에러 메세지
+ * @param errorType - 에러 타입
+ * */
+
+export default function JoinTemplate({action, errorMessage, errorType}: JoinTemplateProps) {
   return (
     <>
       <LoginJoinBox title="회원가입">
@@ -22,6 +30,8 @@ export default function JoinTemplate({action}: JoinTemplateProps) {
               label="아이디"
               id="user_nickname"
               name="user_nickname"
+              isError={errorType === 'user_nickname'}
+              errorMessage={errorMessage}
             />
           </div>
           <div className="mt-4">
@@ -30,6 +40,8 @@ export default function JoinTemplate({action}: JoinTemplateProps) {
               fullWidth
               label="비밀번호"
               type="password"
+              isError={errorType === 'password'}
+              errorMessage={errorMessage}
             />
           </div>
           <div className="mt-4">
@@ -38,6 +50,8 @@ export default function JoinTemplate({action}: JoinTemplateProps) {
               fullWidth
               label="비밀번호 확인"
               type="password"
+              isError={errorType === 'password_confirm'}
+              errorMessage={errorMessage}
             />
           </div>
           <div className="mt-10">
