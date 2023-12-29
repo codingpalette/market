@@ -4,6 +4,7 @@ import { GeistSans } from 'geist/font';
 import './globals.css'
 import MainLayout from "@/app/_components/templates/MainLayout";
 import AuthSession from "@/app/_components/wrapper/AuthSession";
+import ToastWrapper from "@/app/_components/wrapper/ToastWrapper";
 
 // const inter = Inter({ subsets: ['latin'] })
 
@@ -19,7 +20,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko" className={GeistSans.className}>
-      <body>
+    <body>
+      <div className="relative">
         <AuthSession>
           <div>
             <MainLayout>
@@ -27,7 +29,11 @@ export default function RootLayout({
             </MainLayout>
           </div>
         </AuthSession>
-      </body>
+      </div>
+      <div id="toast-root" className="absolute left-0 top-0 w-full">
+        <ToastWrapper />
+      </div>
+    </body>
     </html>
   )
 }

@@ -10,6 +10,7 @@ import {useEffect, useState} from "react";
 import Link from "next/link";
 import Input from "@/app/_components/atoms/Input";
 import FromInput from "@/app/_components/molecules/FormInput";
+import useToastStore from "@/stores/toastStore";
 
 
 interface MainPageProps {
@@ -17,6 +18,8 @@ interface MainPageProps {
 }
 
 export default function MainPage({aa}: MainPageProps) {
+
+  const { addToast } = useToastStore()
 
   useEffect(() => {
     console.log('aa', aa)
@@ -64,6 +67,22 @@ export default function MainPage({aa}: MainPageProps) {
     }
   ]
 
+  function onClickToast() {
+    addToast({
+      type: 'success',
+      message: '안녕!',
+      position: 'top-right'
+    })
+  }
+
+  function onClickToast2() {
+    addToast({
+      type: 'success',
+      message: '안녕ㄴㅇㄹㄴㅇㄹㅇㄴㄹㅇㄴㄹㅇㄴㄹㅇsadaasdasdasdasdsadsa!',
+      position: 'bottom-center'
+    })
+  }
+
 
 
   return (
@@ -76,31 +95,11 @@ export default function MainPage({aa}: MainPageProps) {
       {/*</div>*/}
       {/*<Card />*/}
 
-      <div className="m-4" style={{maxWidth: '400px'}}>
-        <FromInput
-          label="테스트"
-          id="test"
-          isRequired={true}
-          isError={true}
-          errorMessage="에러메세지"
-        />
+      <div>
+        <Button onClick={onClickToast}>toast</Button>
+        <Button onClick={onClickToast2}>toast2</Button>
       </div>
 
-      <div className="m-4">
-        <Input />
-      </div>
-      <div className="m-4">
-        <Input color="primary"/>
-      </div>
-      <div className="m-4">
-        <Input color="danger"/>
-      </div>
-      <div className="m-4">
-        <Input color="success"/>
-      </div>
-      <div className="m-4">
-        <Input color="warning"/>
-      </div>
 
       <div>
         <Link href='/'>Home</Link>
