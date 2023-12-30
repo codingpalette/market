@@ -4,12 +4,13 @@ import FromInput from "@/app/_components/molecules/FormInput";
 import Button from "@/app/_components/atoms/Button";
 import LoginJoinBox from "@/app/(beforeLogin)/_components/organisms/LoginJoinBox";
 import {userCreate} from "@/actions/userAction";
+import {UserJoinErrorType} from "@/types/userType";
 
 
 export interface JoinTemplateProps {
   action: string | ((formData: FormData) => void) | undefined
   errorMessage?: string
-  errorType?: 'user_nickname' | 'password' | 'password_confirm' | null
+  errorType?: UserJoinErrorType | null
 }
 
 /**
@@ -28,8 +29,21 @@ export default function JoinTemplate({action, errorMessage, errorType}: JoinTemp
               placeholder="아이디를 입력해 주세요."
               fullWidth
               label="아이디"
+              id="login_id"
+              name="login_id"
+              maxLength={30}
+              isError={errorType === 'login_id'}
+              errorMessage={errorMessage}
+            />
+          </div>
+          <div className="mt-4">
+            <FromInput
+              placeholder="닉네임을 입력해 주세요."
+              fullWidth
+              label="닉네임"
               id="user_nickname"
               name="user_nickname"
+              maxLength={30}
               isError={errorType === 'user_nickname'}
               errorMessage={errorMessage}
             />
@@ -40,6 +54,9 @@ export default function JoinTemplate({action, errorMessage, errorType}: JoinTemp
               fullWidth
               label="비밀번호"
               type="password"
+              id="password"
+              name="password"
+              maxLength={30}
               isError={errorType === 'password'}
               errorMessage={errorMessage}
             />
@@ -50,6 +67,9 @@ export default function JoinTemplate({action, errorMessage, errorType}: JoinTemp
               fullWidth
               label="비밀번호 확인"
               type="password"
+              id="password_confirm"
+              name="password_confirm"
+              maxLength={30}
               isError={errorType === 'password_confirm'}
               errorMessage={errorMessage}
             />
