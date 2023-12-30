@@ -14,7 +14,7 @@ interface ToastProps {
 
 const toastTypeClasses = {
   success: 'bg-neutral-950',
-  error: 'bg-red-500',
+  error: 'bg-red-600',
   warning: 'bg-yellow-500',
   info: 'bg-blue-500',
 }

@@ -77,7 +77,7 @@ export default function MainPage({aa}: MainPageProps) {
 
   function onClickToast2() {
     addToast({
-      type: 'success',
+      type: 'error',
       message: '안녕ㄴㅇㄹㄴㅇㄹㅇㄴㄹㅇㄴㄹㅇㄴㄹㅇsadaasdasdasdasdsadsa!',
       position: 'bottom-center'
     })
@@ -97,7 +97,7 @@ export default function MainPage({aa}: MainPageProps) {
 
       <div>
         <Button onClick={onClickToast}>toast</Button>
-        <Button onClick={onClickToast2}>toast2</Button>
+        <Button onClick={onClickToast2} color="danger">toast2</Button>
       </div>
 
 

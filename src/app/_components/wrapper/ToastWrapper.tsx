@@ -20,15 +20,17 @@ export default function ToastWrapper() {
 
   return (
     <>
-      {Object.entries(positionStyles).map(([position, positionClass]) => (
-        <div key={position} className={`fixed z-50 ${positionClass}`}>
-          {toastList.filter(toast => toast.position === position).map(toast => (
-            <div key={toast.id} className="toast mb-2">
-              <Toast message={toast.message} type={toast.type} id={toast.id}  />
-            </div>
-          ))}
-        </div>
-      ))}
+      {Object.entries(positionStyles).map(([position, positionClass]) => {
+        return (
+          <div key={position} className={`fixed z-50 ${positionClass}`}>
+            {toastList.filter(toast => toast.position === position).map(toast => (
+              <div key={toast.id} className="toast mb-2">
+                <Toast message={toast.message} type={toast.type} id={toast.id}/>
+              </div>
+            ))}
+          </div>
+        )
+      })}
     </>
   )
 }
