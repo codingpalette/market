@@ -1,7 +1,9 @@
 'use server'
-import {NextResponse, NextRequest} from 'next/server';
+import {NextResponse, NextRequest, } from 'next/server';
 import {sql} from '@vercel/postgres';
+import * as bcrypt from 'bcrypt'
 import { revalidatePath } from "next/cache"
+import {isValidPassword} from "@/util/stringFormat";
 
 export async function loginAction() {
   console.log('2233333322')
@@ -38,19 +40,41 @@ export async function gerUsers() {
 }
 
 export async function userCreate(formData: any) {
-  console.log('formData', formData)
-  return NextResponse.json({formData}, {status: 200}).json()
   try {
+    const result = {
+      message: '',
+      status: 200,
+      data: null
+    }
+    // 유저 아이디 중복 체크
+    const isUser = await sql`SELECT * FROM users WHERE login_id = ${formData.get('login_id')}`;
+    if (isUser.rows.length > 0) {
+      result.message = '이미 사용중인 아이디입니다.';
+      result.status = 500;
+      return NextResponse.json(result, {status: 500}).json()
+    }
+    // 유저 닉네임 중복 체크
+    const isNickname = await sql`SELECT * FROM users WHERE user_nickname = ${formData.get('user_nickname')}`;
+    if (isNickname.rows.length > 0) {
+      result.message = '이미 사용중인 닉네임입니다.';
+      result.status = 500;
+      return NextResponse.json(result, {status: 500}).json()
+    }
+    if (!isValidPassword(formData.get('password'))) {
+      result.message = '비밀번호 에러 입니다.';
+      result.status = 500;
+      return NextResponse.json(result, {status: 500}).json()
+    }
+    // 비밀번호 암호화
+    const hashPassword = await bcrypt.hash(formData.get('password'), 12);
     // 유저 생성
-    const result = await sql`
-      INSERT INTO users (login_id, password) VALUES (${formData.get('user_nickname')}, '1234') 
+    await sql`
+      INSERT INTO users (login_id, password, user_nickname) VALUES (${formData.get('login_id')}, ${hashPassword}, ${formData.get('user_nickname')})
     `;
     revalidatePath('/')
-    return NextResponse.json({result}, {status: 200}).json()
-
+    result.message = '회원가입이 완료되었습니다.';
+    return NextResponse.json(result, {status: 200}).json()
   } catch (e: any) {
-    console.log(e.message)
-    // return NextResponse.json({error: e.message}, {status: 500})
+    throw new Error(e.message)
   }
-
 }

@@ -5,17 +5,20 @@ import {userCreate} from "@/actions/userAction";
 import {useState} from "react";
 import {isEmpty, isValidLoginId, isValidNickname, isValidPassword} from "@/util/stringFormat";
 import {UserJoinErrorType} from "@/types/userType";
+import useToastStore from "@/stores/toastStore";
+import { useRouter } from 'next/navigation'
 
 
 export default function JoinPage() {
+  const router = useRouter();
+  const { addToast } = useToastStore();
 
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const [errorMessage, setErrorMessage] = useState<string>('')
   const [errorType, setErrorType] = useState<UserJoinErrorType | null | undefined>(null)
 
   async function actionEvent(formData: FormData) {
     // 'use server'
-    console.log('22222')
-    console.log()
     // 점증 로직
     if (isEmpty(formData.get('login_id'))) {
       setErrorMessage('아이디를 입력해 주세요.')
@@ -52,17 +55,32 @@ export default function JoinPage() {
       setErrorType('password_confirm')
       return
     }
-
-    console.log('33333')
-
+    setIsLoading(true)
     try {
-
       const res = await userCreate(formData)
       console.log('res', res)
-      setErrorMessage('아이를 입력해 주세요.')
-      setErrorType('login_id')
-    } catch (e) {
-
+      if (res.status !== 200) {
+        addToast({
+          type: 'error',
+          message: res.message,
+          position: 'top-center'
+        })
+      } else {
+        addToast({
+          type: 'success',
+          message: res.message,
+          position: 'top-center'
+        })
+        router.push('/login')
+      }
+    } catch (e: any) {
+      addToast({
+        type: 'error',
+        message: '서버에 문제가 발생했습니다.',
+        position: 'top-center'
+      })
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -72,6 +90,7 @@ export default function JoinPage() {
         action={actionEvent}
         errorMessage={errorMessage}
         errorType={errorType}
+        isLoading={isLoading}
       />
     </>
   )

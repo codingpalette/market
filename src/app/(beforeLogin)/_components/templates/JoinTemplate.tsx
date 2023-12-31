@@ -11,6 +11,7 @@ export interface JoinTemplateProps {
   action: string | ((formData: FormData) => void) | undefined
   errorMessage?: string
   errorType?: UserJoinErrorType | null
+  isLoading?: boolean
 }
 
 /**
@@ -19,7 +20,7 @@ export interface JoinTemplateProps {
  * @param errorType - 에러 타입
  * */
 
-export default function JoinTemplate({action, errorMessage, errorType}: JoinTemplateProps) {
+export default function JoinTemplate({action, errorMessage, errorType, isLoading}: JoinTemplateProps) {
   return (
     <>
       <LoginJoinBox title="회원가입">
@@ -75,7 +76,7 @@ export default function JoinTemplate({action, errorMessage, errorType}: JoinTemp
             />
           </div>
           <div className="mt-10">
-            <Button fullWidth type="submit">회원가입</Button>
+            <Button fullWidth type="submit" isLoading={isLoading}>회원가입</Button>
           </div>
         </form>
       </LoginJoinBox>
