@@ -5,6 +5,12 @@ import * as bcrypt from 'bcrypt'
 import { revalidatePath } from "next/cache"
 import {isValidPassword} from "@/util/stringFormat";
 
+interface ResultType {
+  message: string;
+  status: number;
+  data: any;
+}
+
 export async function loginAction() {
   console.log('2233333322')
   // const conn = await connectDb();
@@ -73,6 +79,35 @@ export async function userCreate(formData: any) {
     `;
     revalidatePath('/')
     result.message = '회원가입이 완료되었습니다.';
+    return NextResponse.json(result, {status: 200}).json()
+  } catch (e: any) {
+    throw new Error(e.message)
+  }
+}
+
+export async function getUser(formData: any) {
+  try {
+    const result: ResultType = {
+      message: '',
+      status: 200,
+      data: null
+    }
+    // 유저 아이디 체크
+    const isUser = await sql`SELECT * FROM users WHERE login_id = ${formData.login_id}`;
+    if (isUser.rows.length === 0) {
+      result.message = '아이디가 존재하지 않습니다.';
+      result.status = 500;
+      return NextResponse.json(result, {status: 500}).json()
+    }
+    // 비밀번호 체크
+    const isPassword = await bcrypt.compare(formData.password, isUser.rows[0].password);
+    if (!isPassword) {
+      result.message = '비밀번호가 일치하지 않습니다.';
+      result.status = 500;
+      return NextResponse.json(result, {status: 500}).json()
+    }
+    result.message = '로그인이 완료되었습니다.';
+    result.data = isUser.rows[0];
     return NextResponse.json(result, {status: 200}).json()
   } catch (e: any) {
     throw new Error(e.message)

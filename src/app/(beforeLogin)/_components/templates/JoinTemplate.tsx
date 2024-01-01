@@ -18,6 +18,7 @@ export interface JoinTemplateProps {
  * @param action - form 이벤트
  * @param errorMessage - 에러 메세지
  * @param errorType - 에러 타입
+ * @param isLoading - 로딩 여부
  * */
 
 export default function JoinTemplate({action, errorMessage, errorType, isLoading}: JoinTemplateProps) {

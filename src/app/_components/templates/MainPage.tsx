@@ -11,6 +11,8 @@ import Link from "next/link";
 import Input from "@/app/_components/atoms/Input";
 import FromInput from "@/app/_components/molecules/FormInput";
 import useToastStore from "@/stores/toastStore";
+import { useSession, signIn, signOut } from "next-auth/react"
+import {useRouter} from "next/navigation";
 
 
 interface MainPageProps {
@@ -18,6 +20,10 @@ interface MainPageProps {
 }
 
 export default function MainPage({aa}: MainPageProps) {
+  const { data: session } = useSession();
+  console.log(session);
+
+  const router = useRouter();
 
   const { addToast } = useToastStore()
 
@@ -83,6 +89,15 @@ export default function MainPage({aa}: MainPageProps) {
     })
   }
 
+  async function logOut() {
+    console.log('logout')
+    await signOut({
+      redirect: false,
+    });
+    router.push('/')
+
+  }
+
 
 
   return (
@@ -94,6 +109,10 @@ export default function MainPage({aa}: MainPageProps) {
       {/*  <MenuList items={items} />*/}
       {/*</div>*/}
       {/*<Card />*/}
+
+      <div>
+        <Button onClick={logOut}>로그아웃</Button>
+      </div>
 
       <div>
         <Button onClick={onClickToast}>toast</Button>
