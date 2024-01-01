@@ -54,14 +54,14 @@ export default function Button({children, onClick, color = 'default', size = 'me
     ${colorClasses[color]}
     ${sizeClasses[size]}
     ${className}
-    ${disabled || isLoading ? 'opacity-50 cursor-not-allowed' : ''}
+    ${disabled || isLoading ? 'opacity-70 cursor-not-allowed' : ''}
     ${isIconOnly ? 'rounded-full px-0 py-0 flex items-center justify-center' : ''}
     ${fullWidth ? 'w-full' : ''}
   `;
 
   return (
     <>
-      <button className={buttonClasses} onClick={onClick} disabled={disabled} type={type} style={style}>
+      <button className={buttonClasses} onClick={onClick} disabled={disabled || isLoading} type={type} style={style}>
         {isLoading && <FontAwesomeIcon icon={faSpinner} className="w-4 h-4 inline-block mr-2 animate-spin" />}
         {children}
       </button>

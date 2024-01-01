@@ -42,7 +42,6 @@ export default function LoginPage() {
         redirect: true,
         callbackUrl: '/'
       })
-      console.log('res', res)
       if (res?.error) {
         addToast({
           type: 'error',

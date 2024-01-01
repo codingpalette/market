@@ -40,9 +40,9 @@ export const {
     //   console.log('auth.ts jwt', token);
     //   return token;
     // },
-    // session({ session, newSession, user}) {
-    //   return session;
-    // },
+    session({ session, newSession, user}) {
+      return session;
+    },
     // async redirect({url, baseUrl}) {
     //   if (url.startsWith("/")) return `${baseUrl}${url}`
     //   return baseUrl

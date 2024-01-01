@@ -111,6 +111,10 @@ export default function MainPage({aa}: MainPageProps) {
       {/*<Card />*/}
 
       <div>
+        <Button onClick={testClick}>테스트</Button>
+      </div>
+
+      <div>
         <Button onClick={logOut}>로그아웃</Button>
       </div>
 

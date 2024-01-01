@@ -10,10 +10,12 @@ import {useState, useTransition} from 'react';
 import Modal from "@/app/_components/molecules/Modal";
 import FromInput from "@/app/_components/molecules/FormInput";
 import Input from "@/app/_components/atoms/Input";
+import {useSession} from "next-auth/react";
 
 
 
 export default function HeaderTop() {
+  const { data: session } = useSession();
   let [isPending, startTransition] = useTransition();
 
   // 로그인 모달 상태값
@@ -45,21 +47,30 @@ export default function HeaderTop() {
           </Link>
         </div>
         <div className="flex gap-2">
-          <Button>
-            <FontAwesomeIcon icon={faBell} />
-          </Button>
+          {session ? (
+            <>
+              <Button>
+                <FontAwesomeIcon icon={faBell} />
+              </Button>
+            </>
+          ): (
+            <>
+              <Button>
+                <Link href="/login">
+                  로그인
+                </Link>
+              </Button>
+              <Button>
+                <Link href="/join">
+                  회원가입
+                </Link>
+              </Button>
+            </>
+          )}
+
           {/*<Button onClick={() => startTransition(() => loginAction())}>로그인</Button>*/}
           {/*<Button onClick={openLoginModal}>로그인</Button>*/}
-          <Button>
-            <Link href="/login">
-              로그인
-            </Link>
-          </Button>
-          <Button>
-            <Link href="/join">
-              회원가입
-            </Link>
-          </Button>
+
           {/*<Button>로그인</Button>*/}
           {/*<Button color="primary">회원가입</Button>*/}
         </div>
