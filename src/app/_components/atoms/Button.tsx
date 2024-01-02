@@ -19,10 +19,11 @@ interface ButtonProps {
   type?: 'button' | 'submit' | 'reset'; // 버튼 타입
   style?: React.CSSProperties;
   fullWidth?: boolean;
+  rotundFull?: boolean;
 }
 
 const colorClasses = {
-  default: 'bg-neutral-950 text-zinc-50 border border-neutral-800 hover:bg-neutral-900',
+  default: 'bg-neutral-950 text-zinc-50 border border-neutral-600 hover:bg-neutral-900',
   primary: 'bg-white text-black hover:bg-neutral-300',
   // success: 'bg-green-500 text-white',
   // warning: 'bg-yellow-500 text-white',
@@ -48,6 +49,7 @@ const sizeClasses = {
  * @param {React.CSSProperties} style - 선택적 CSS 인라인 스타일
  * @param {boolean} fullWidth - 버튼 width 100%
  * @param {React.RefObject<HTMLButtonElement>} ref - 버튼 ref
+ * @param {boolean} rotundFull - 버튼 border-radius: 9999px
  * */
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
@@ -61,11 +63,13 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
   isIconOnly,
   type = 'button',
   style,
-  fullWidth
+  fullWidth,
+  rotundFull,
 }, ref) => {
 
   const buttonClasses = `
-    rounded-md transition-background-color duration-200  
+    ${rotundFull ? 'rounded-full flex items-center justify-center w-10 h-10' : 'rounded-md '}
+    transition-background-color duration-200  
     ${colorClasses[color]}
     ${sizeClasses[size]}
     ${className}

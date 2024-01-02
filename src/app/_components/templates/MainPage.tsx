@@ -54,33 +54,7 @@ export default function MainPage({aa}: MainPageProps) {
   return (
     <>
 
-      <div>
-        <DropdownMenu
-          active={active}
-        />
 
-      </div>
-
-      <div>
-        <Button onClick={logOut}>로그아웃</Button>
-      </div>
-
-
-
-      <Button onClick={modalOpen}>오픈</Button>
-      {aa.map((v: any) => {
-        return (
-          <div key={v.user_id}>
-            {v.user_nickname}
-          </div>
-        )
-      })}
-      {/*<Modal*/}
-      {/*  title="모달 타이틀"*/}
-      {/*  open={active}*/}
-      {/*  onClose={modalClose}*/}
-      {/*>*/}
-      {/*</Modal>*/}
     </>
   )
 }

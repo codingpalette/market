@@ -55,10 +55,10 @@ export default function HeaderTop() {
             />
           </Link>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 items-center">
           {session ? (
             <>
-              <Button>
+              <Button rotundFull>
                 <FontAwesomeIcon icon={faBell} />
               </Button>
               <DropdownMenu

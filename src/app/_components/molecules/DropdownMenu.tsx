@@ -7,9 +7,10 @@ interface DropdownMenuProps extends MenuListProps{
   active?: boolean;
   position?: 'left' | 'right';
   boxWidth?: string;
+  triggerTitle?: string;
 }
 
-export default function DropdownMenu({active, position = 'left', boxWidth = '250px', ...MenuListProps}: DropdownMenuProps) {
+export default function DropdownMenu({active, position = 'left', boxWidth = '250px', triggerTitle = '메뉴', ...MenuListProps}: DropdownMenuProps) {
 
 
   const dropDownBoxClasses = `
@@ -48,7 +49,7 @@ export default function DropdownMenu({active, position = 'left', boxWidth = '250
   return (
     <>
       <div className="relative">
-        <Button ref={toggleButtonRef} onClick={toggleDropdown}>클릭</Button>
+        <Button ref={toggleButtonRef} onClick={toggleDropdown}>{triggerTitle}</Button>
         {isActive && (
           <>
             <div ref={dropdownRef} className={dropDownBoxClasses} style={{width: boxWidth}}>
