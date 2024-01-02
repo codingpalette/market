@@ -13,6 +13,7 @@ import FromInput from "@/app/_components/molecules/FormInput";
 import useToastStore from "@/stores/toastStore";
 import { useSession, signIn, signOut } from "next-auth/react"
 import {useRouter} from "next/navigation";
+import DropdownMenu from "@/app/_components/molecules/DropdownMenu";
 
 
 interface MainPageProps {
@@ -21,19 +22,10 @@ interface MainPageProps {
 
 export default function MainPage({aa}: MainPageProps) {
   const { data: session } = useSession();
-  console.log(session);
 
   const router = useRouter();
 
   const { addToast } = useToastStore()
-
-  useEffect(() => {
-    console.log('aa', aa)
-  }, [aa])
-
-  const testClick = () => {
-    console.log('test')
-  }
 
   const [active, setActive] = useState(false)
 
@@ -47,47 +39,6 @@ export default function MainPage({aa}: MainPageProps) {
     setActive(false)
   }
 
-  const items = [
-    {
-      key: '1',
-      label: (
-        <a target="_blank" rel="noopener noreferrer" href="" className="block">
-          1st menu item
-        </a>
-      ),
-    },
-    {
-      key: '2',
-      label: (
-        <span>1111</span>
-      ),
-      disabled: true,
-      onClick: testClick,
-    },
-    {
-      key: '3',
-      label: (
-        <span>1111</span>
-      ),
-      onClick: testClick,
-    }
-  ]
-
-  function onClickToast() {
-    addToast({
-      type: 'success',
-      message: '안녕!',
-      position: 'top-right'
-    })
-  }
-
-  function onClickToast2() {
-    addToast({
-      type: 'error',
-      message: '안녕ㄴㅇㄹㄴㅇㄹㅇㄴㄹㅇㄴㄹㅇㄴㄹㅇsadaasdasdasdasdsadsa!',
-      position: 'bottom-center'
-    })
-  }
 
   async function logOut() {
     console.log('logout')
@@ -102,34 +53,19 @@ export default function MainPage({aa}: MainPageProps) {
 
   return (
     <>
-      {/*<div style={{width: '400px'}}>*/}
-      {/*  <ItemCard />*/}
-      {/*</div>*/}
-      {/*<div>*/}
-      {/*  <MenuList items={items} />*/}
-      {/*</div>*/}
-      {/*<Card />*/}
 
       <div>
-        <Button onClick={testClick}>테스트</Button>
+        <DropdownMenu
+          active={active}
+        />
+
       </div>
 
       <div>
         <Button onClick={logOut}>로그아웃</Button>
       </div>
 
-      <div>
-        <Button onClick={onClickToast}>toast</Button>
-        <Button onClick={onClickToast2} color="danger">toast2</Button>
-      </div>
 
-
-      <div>
-        <Link href='/'>Home</Link>
-      </div>
-      <div>
-        <Link href='/about'>about</Link>
-      </div>
 
       <Button onClick={modalOpen}>오픈</Button>
       {aa.map((v: any) => {
@@ -139,12 +75,12 @@ export default function MainPage({aa}: MainPageProps) {
           </div>
         )
       })}
-      <Modal
-        title="모달 타이틀"
-        open={active}
-        onClose={modalClose}
-      >
-      </Modal>
+      {/*<Modal*/}
+      {/*  title="모달 타이틀"*/}
+      {/*  open={active}*/}
+      {/*  onClose={modalClose}*/}
+      {/*>*/}
+      {/*</Modal>*/}
     </>
   )
 }

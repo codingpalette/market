@@ -6,7 +6,7 @@ interface itemsProps {
   disabled?: boolean;
 }
 
-interface MenuListProps {
+export interface MenuListProps {
   items?: itemsProps[];
 }
 

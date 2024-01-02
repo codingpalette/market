@@ -1,3 +1,4 @@
+import React, { forwardRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
@@ -46,8 +47,22 @@ const sizeClasses = {
  * @param {'button' | 'submit' | 'reset'} type - 버튼 타입
  * @param {React.CSSProperties} style - 선택적 CSS 인라인 스타일
  * @param {boolean} fullWidth - 버튼 width 100%
+ * @param {React.RefObject<HTMLButtonElement>} ref - 버튼 ref
  * */
-export default function Button({children, onClick, color = 'default', size = 'medium', className = '', disabled, isLoading, isIconOnly, type = 'button', style, fullWidth}: ButtonProps) {
+
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
+  children,
+  onClick,
+  color = 'default',
+  size = 'medium',
+  className = '',
+  disabled,
+  isLoading,
+  isIconOnly,
+  type = 'button',
+  style,
+  fullWidth
+}, ref) => {
 
   const buttonClasses = `
     rounded-md transition-background-color duration-200  
@@ -61,10 +76,14 @@ export default function Button({children, onClick, color = 'default', size = 'me
 
   return (
     <>
-      <button className={buttonClasses} onClick={onClick} disabled={disabled || isLoading} type={type} style={style}>
+      <button className={buttonClasses} onClick={onClick} disabled={disabled || isLoading} type={type} style={style} ref={ref}>
         {isLoading && <FontAwesomeIcon icon={faSpinner} className="w-4 h-4 inline-block mr-2 animate-spin" />}
         {children}
       </button>
     </>
   )
-}
+});
+
+Button.displayName = 'Button'; // displayName 설정
+
+export default Button;

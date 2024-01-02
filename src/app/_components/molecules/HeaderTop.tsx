@@ -10,7 +10,8 @@ import {useState, useTransition} from 'react';
 import Modal from "@/app/_components/molecules/Modal";
 import FromInput from "@/app/_components/molecules/FormInput";
 import Input from "@/app/_components/atoms/Input";
-import {useSession} from "next-auth/react";
+import {useSession, signOut} from "next-auth/react";
+import DropdownMenu from "@/app/_components/molecules/DropdownMenu";
 
 
 
@@ -28,6 +29,14 @@ export default function HeaderTop() {
   function closeLoginModal() {
     setLoginModalActive(false);
   }
+
+  const dropDownItems = [
+    {
+      key: 1,
+      label: '로그아웃',
+      onClick: () => signOut()
+    }
+  ]
 
 
   return (
@@ -52,6 +61,11 @@ export default function HeaderTop() {
               <Button>
                 <FontAwesomeIcon icon={faBell} />
               </Button>
+              <DropdownMenu
+                position="right"
+                boxWidth="150px"
+                items={dropDownItems}
+              />
             </>
           ): (
             <>
