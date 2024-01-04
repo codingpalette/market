@@ -14,6 +14,9 @@ import useToastStore from "@/stores/toastStore";
 import { useSession, signIn, signOut } from "next-auth/react"
 import {useRouter} from "next/navigation";
 import DropdownMenu from "@/app/_components/molecules/DropdownMenu";
+import ContentBox from "@/app/_components/atoms/ContentBox";
+import SearchInput from "@/app/_components/molecules/SearchInput";
+import SectionBox from "@/app/_components/atoms/SectionBox";
 
 
 interface MainPageProps {
@@ -53,7 +56,11 @@ export default function MainPage({aa}: MainPageProps) {
 
   return (
     <>
-
+      <ContentBox>
+        <SectionBox>
+          <SearchInput />
+        </SectionBox>
+      </ContentBox>
 
     </>
   )
