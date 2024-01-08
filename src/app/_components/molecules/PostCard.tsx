@@ -1,5 +1,4 @@
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import { faImage } from '@fortawesome/free-regular-svg-icons';
+import { PhotoIcon } from '@heroicons/react/24/solid'
 
 
 interface PostCardProps {
@@ -21,7 +20,7 @@ export default function PostCard({imageUrl}: PostCardProps) {
             </div>
           ) : (
             <div className="w-full h-full flex items-center justify-center">
-              <FontAwesomeIcon icon={faImage} size="4x" className="text-white"/>
+              <PhotoIcon className="h-24 w-24 text-white" />
             </div>
           )}
         </div>
