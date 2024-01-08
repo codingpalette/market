@@ -21,7 +21,7 @@ export default function PostCard({imageUrl}: PostCardProps) {
             </div>
           ) : (
             <div className="w-full h-full flex items-center justify-center">
-              <FontAwesomeIcon icon={faImage} className="text-6xl text-white"/>
+              <FontAwesomeIcon icon={faImage} size="4x" className="text-white"/>
             </div>
           )}
         </div>

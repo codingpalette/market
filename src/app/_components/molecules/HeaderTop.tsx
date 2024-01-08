@@ -12,11 +12,13 @@ import FromInput from "@/app/_components/molecules/FormInput";
 import Input from "@/app/_components/atoms/Input";
 import {useSession, signOut} from "next-auth/react";
 import DropdownMenu from "@/app/_components/molecules/DropdownMenu";
+import {useRouter} from "next/navigation";
 
 
 
 export default function HeaderTop() {
   const { data: session } = useSession();
+  const router = useRouter()
   let [isPending, startTransition] = useTransition();
 
   // 로그인 모달 상태값
@@ -35,6 +37,11 @@ export default function HeaderTop() {
       key: 1,
       label: '로그아웃',
       onClick: () => signOut()
+    },
+    {
+      key: 2,
+      label: '상품 작성',
+      onClick: () => router.push('/write')
     }
   ]
 
