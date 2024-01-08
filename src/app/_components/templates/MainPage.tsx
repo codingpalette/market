@@ -17,6 +17,7 @@ import DropdownMenu from "@/app/_components/molecules/DropdownMenu";
 import ContentBox from "@/app/_components/atoms/ContentBox";
 import SearchInput from "@/app/_components/molecules/SearchInput";
 import SectionBox from "@/app/_components/atoms/SectionBox";
+import PostCard from "@/app/_components/molecules/PostCard";
 
 
 interface MainPageProps {
@@ -59,6 +60,14 @@ export default function MainPage({aa}: MainPageProps) {
       <ContentBox>
         <SectionBox>
           <SearchInput />
+        </SectionBox>
+        <SectionBox>
+          <div className="grid grid-cols-4 gap-4 mt-4">
+            <PostCard imageUrl="https://velog.velcdn.com/images/sehyunny/post/9a074eca-4274-4f46-8970-62b73fa5243e/image.png" />
+            <PostCard />
+            <PostCard />
+          </div>
+          {/*<ItemCard />*/}
         </SectionBox>
       </ContentBox>
 
